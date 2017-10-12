@@ -21,6 +21,25 @@ router.get('/', function(req, res, next) {
 	);  
 });
 
+/* GET all pets and user. */
+router.get('/pets', function(req, res, next) {
+	var con = req.con;
+	async.parallel (
+	[
+		function(callback){
+			con.query('SELECT account.id, account.username, account.full_name, pest.pet_name, pest.bread, pest.species FROM account LEFT JOIN pest ON account.id = pest.id ORDER BY account.full_name ', function(errors,pets){
+				callback(errors, pets);
+
+			});	
+		}
+	],
+	function(err, results){
+		var data = {pets: results[0]}; console.log(data);
+		res.render('account/pets', data);
+		}
+	);  
+});
+
 /* GET add user  page. */
 router.get('/add', function(req, res, next) {
 	res.render('account/add');

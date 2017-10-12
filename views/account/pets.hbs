@@ -1,0 +1,30 @@
+				
+<!DOCTYPE html>
+<html>
+<head>
+	<title>title Account List</title>
+	<h3>Pet list</h3>
+	<table border='1'>
+			<tr>
+				<th>Id</th>
+				<th>Username</th>
+				<th>Full Name</th>
+				<th>Pet Name</th>
+				<th>Bread</th>
+				<th>Species</th>
+			</tr>
+			{{#each pets}}
+				<tr>
+					<td>#{{id}}</td>
+					<td>{{username}}</td>
+					<td>{{full_name}}</td>
+					<td>{{pet_name}}</td>
+					<td>{{bread}}</td>
+					<td>{{species}}</td>		
+			{{/each}}			
+		</table>		
+</head>
+<body>
+
+</body>
+</html>

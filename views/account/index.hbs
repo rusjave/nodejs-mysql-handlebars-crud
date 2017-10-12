@@ -14,9 +14,9 @@
 			</tr>
 			{{#each accounts}}
 				<tr>
-					<td>	#{{id}}</td>
-					<td>	#{{username}}</td>
-					<td>	#{{full_name}}</td>	
+					<td>#{{id}}</td>
+					<td>{{username}}</td>
+					<td>{{full_name}}</td>	
 					<td> 
 						<a href="/account/edit/{{id}}">Edit</a>
 						<a href="/account/delete/{{id}}  onclick="return confirm('Are you sure?')">Delete</a>
