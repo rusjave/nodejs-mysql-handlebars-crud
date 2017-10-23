@@ -34,8 +34,9 @@ router.get('/pets', function(req, res, next) {
 		}
 	],
 	function(err, results){
-		var data = {pets: results[0]}; console.log(data);
+		var data = {pets: results[0]}; 
 		res.render('account/pets', data);
+			console.log(data);
 		}
 	);  
 });
@@ -103,25 +104,48 @@ router.get('/edit/:id', function(req, res, next) {
 });
 
 /* API for edit new user */
-router.post('/edit/', function(req, res, next) {
+// router.post('/edit/', function(req, res, next) {
+// 	var con = req.con;
+// 	async.parallel (
+// 	[
+// 		function(callback){
+// 			con.query('SELECT * FROM account WHERE id = ?', [req.body.id], function(errors,accounts){
+// 				var account = accounts[0].password;
+// 					if(req.body.password !=''){
+// 						account.password = req.body.password;
+// 					}
+// 					con.query('UPDATE  account set username  = ?, password = ?, full_name = ? WHERE id = ?', 
+// 						[req.body.username, password, req.body.full_name, req.body.id], function(errors,accounts){
+// 						callback(errors); 
+// 					});		
+// 			});	
+// 		}
+// 	],
+// 	function(err, results){
+// 			res.redirect('/account');
+// 		}
+// 	);  
+
+// });
+
+/* API for add new user*/
+router.post('/update', function(req, res, next) {
 	var con = req.con;
 	async.parallel (
 	[
 		function(callback){
-			con.query('SELECT * FROM account WHERE id = ?', [req.body.id], function(errors,accounts){
-				var account = accounts[0].password;
-					if(req.body.password !=''){
-						account.password = req.body.password;
-					}
-					con.query('UPDATE  account set username  = ?, password = ?, full_name = ? WHERE id = ?', 
-						[req.body.username, password, req.body.full_name, req.body.id], function(errors,accounts){
+			// con.query('INSERT INTO account(username, password, full_name) values(?,?,?)', [req.body.username, req.body.password, req.body.full_name], 
+			// 	function(errors,accounts){
+			// 		callback(errors);
+			// });
+			con.query('UPDATE  account set username  = ?, password = ?, full_name = ? WHERE id = ?', 
+						[req.body.username, req.body.password, req.body.full_name, req.body.id], function(errors,accounts){
 						callback(errors); 
-					});		
-			});	
+					});	
 		}
 	],
 	function(err, results){
-			res.redirect('/account');
+		res.redirect('/account');
 		}
 	);  
 
